@@ -2,6 +2,7 @@ package com.haridu.solsticetraining;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.haridu.solsticetraining.beans.Stock;
+import com.haridu.solsticetraining.beans.StockSummary;
 import com.haridu.solsticetraining.tables.StocksManager;
 import sun.java2d.pipe.SpanShapeRenderer;
 
@@ -17,10 +18,11 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        /*
+    /*
+        // input data from JSON file into the database
         InputStream source = Main.class.getResourceAsStream("week1-stocks.json");
         addToDatabase(source);
-        */
+    */
 
         Scanner sc = new Scanner(System.in);
 
@@ -29,17 +31,15 @@ public class Main {
         System.out.print("Please enter the date you want a summary of (i.e 2018-06-22): ");
         String date = sc.nextLine();
 
-
-        double highestPrice = StocksManager.highestPrice(symbol, Date.valueOf(date));
-        double lowestPrice = StocksManager.lowestPrice(symbol, Date.valueOf(date));
-        int totalVolume = StocksManager.totalVolume(symbol, Date.valueOf(date));
+        // Object representing summarized data
+        StockSummary summary = StocksManager.getSummary(symbol, Date.valueOf(date));
 
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("~~~~~~~~~~SUMMARY~~~~~~~~~~~~~~~~");
-        System.out.println("Highest price for the day: " + highestPrice);
-        System.out.println("Lowest price for the day: " + lowestPrice);
-        System.out.println("Total volume for the day: " + totalVolume);
+        System.out.println("Highest price for the day: " + summary.getHighestPrice());
+        System.out.println("Lowest price for the day: " + summary.getLowestPrice());
+        System.out.println("Total volume for the day: " + summary.getTotalVolume());
 
     }
 

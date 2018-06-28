@@ -5,10 +5,17 @@ import java.sql.*;
 import com.haridu.solsticetraining.DBType;
 import com.haridu.solsticetraining.DBUtil;
 import com.haridu.solsticetraining.beans.Stock;
+import com.haridu.solsticetraining.beans.StockSummary;
 
 
 public class StocksManager {
 
+    /**
+     *
+     * @param stock
+     * @return
+     * @throws Exception
+     */
     public static boolean insert(Stock stock) throws Exception {
 
         String sql = "INSERT into stocks (symbol, price, volume, date) " +
@@ -35,89 +42,85 @@ public class StocksManager {
         return true;
     }
 
-    public static double highestPrice(String symbol, Date date) throws SQLException {
+    /**
+     *
+     * @param symbol
+     * @param date
+     * @return
+     * @throws SQLException
+     */
+    public static StockSummary getSummary(String symbol, Date date) throws SQLException {
 
-        String sql = "SELECT MAX(price) FROM stocks WHERE date = ? AND symbol = ?";
-        ResultSet rs = null;
+        String sqlHighestPrice = "SELECT MAX(price) FROM stocks WHERE date = ? AND symbol = ?";
+        ResultSet resultHighestPrice = null;
 
-        try (
-                Connection conn = DBUtil.getConnection(DBType.MYSQL);
-                PreparedStatement stmt = conn.prepareStatement(sql);
-        ){
-            stmt.setDate(1, date);
-            stmt.setString(2, symbol);
-            rs = stmt.executeQuery();
+        String sqlLowestPrice = "SELECT MIN(price) FROM stocks WHERE date = ? AND symbol = ?";
+        ResultSet resultLowestPrice = null;
 
-            if (rs.next()) {
-                return rs.getDouble(1);
-            } else {
-                return -1;
-            }
 
-        } catch (SQLException e) {
-            System.err.println(e);
-            return -1;
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-        }
-    }
+        String sqlTotalVolume = "SELECT SUM(volume) FROM stocks WHERE date = ? AND symbol = ?";
+        ResultSet resultTotalVolume = null;
 
-    public static double lowestPrice(String symbol, Date date) throws SQLException {
-
-        String sql = "SELECT MIN(price) FROM stocks WHERE date = ? AND symbol = ?";
-        ResultSet rs = null;
+        // Object representing summarized data
+        StockSummary summary = new StockSummary();
+        summary.setSymbol(symbol);
+        summary.setDate(date);
 
         try (
                 Connection conn = DBUtil.getConnection(DBType.MYSQL);
-                PreparedStatement stmt = conn.prepareStatement(sql);
-        ){
-            stmt.setDate(1, date);
-            stmt.setString(2, symbol);
-            rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                return rs.getDouble(1);
+                // statement for each sql query
+                PreparedStatement stmtHighestPrice = conn.prepareStatement(sqlHighestPrice);
+                PreparedStatement stmtLowestPrice = conn.prepareStatement(sqlLowestPrice);
+                PreparedStatement stmtTotalVolume = conn.prepareStatement(sqlTotalVolume);
+        ){
+            stmtHighestPrice.setDate(1, date);
+            stmtHighestPrice.setString(2, symbol);
+            resultHighestPrice = stmtHighestPrice.executeQuery();
+
+            stmtLowestPrice.setDate(1, date);
+            stmtLowestPrice.setString(2, symbol);
+            resultLowestPrice = stmtLowestPrice.executeQuery();
+
+            stmtTotalVolume.setDate(1, date);
+            stmtTotalVolume.setString(2, symbol);
+            resultTotalVolume = stmtTotalVolume.executeQuery();
+
+            if (resultHighestPrice.next()) {
+
+                summary.setHighestPrice(resultHighestPrice.getDouble(1));
             } else {
-                return -1;
+                System.out.println("Error in retrieving highest price");
             }
+
+            if (resultLowestPrice.next()) {
+
+                summary.setLowestPrice(resultLowestPrice.getDouble(1));
+            } else {
+                System.out.println("Error in retrieving lowest price");
+            }
+
+            if (resultTotalVolume.next()) {
+
+                summary.setTotalVolume(resultTotalVolume.getInt(1));
+            } else {
+                System.out.println("Error in retrieving total volume");
+            }
+
+            return summary;
 
         } catch (SQLException e) {
             System.err.println(e);
-            return -1;
+            return null;
         } finally {
-            if (rs != null) {
-                rs.close();
+            if (resultHighestPrice != null){
+                resultHighestPrice.close();
             }
-        }
-    }
-
-    public static int totalVolume(String symbol, Date date) throws SQLException {
-
-        String sql = "SELECT SUM(volume) FROM stocks WHERE date = ? AND symbol = ?";
-        ResultSet rs = null;
-
-        try (
-                Connection conn = DBUtil.getConnection(DBType.MYSQL);
-                PreparedStatement stmt = conn.prepareStatement(sql);
-        ){
-            stmt.setDate(1, date);
-            stmt.setString(2, symbol);
-            rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                return rs.getInt(1);
-            } else {
-                return -1;
+            if (resultLowestPrice != null){
+                resultLowestPrice.close();
             }
-
-        } catch (SQLException e) {
-            System.err.println(e);
-            return -1;
-        } finally {
-            if (rs != null) {
-                rs.close();
+            if (resultTotalVolume != null){
+                resultTotalVolume.close();
             }
         }
     }
