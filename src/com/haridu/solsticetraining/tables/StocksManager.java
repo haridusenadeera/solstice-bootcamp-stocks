@@ -51,15 +51,8 @@ public class StocksManager {
      */
     public static StockSummary getSummary(String symbol, Date date) throws SQLException {
 
-        String sqlHighestPrice = "SELECT MAX(price) FROM stocks WHERE date = ? AND symbol = ?";
-        ResultSet resultHighestPrice = null;
-
-        String sqlLowestPrice = "SELECT MIN(price) FROM stocks WHERE date = ? AND symbol = ?";
-        ResultSet resultLowestPrice = null;
-
-
-        String sqlTotalVolume = "SELECT SUM(volume) FROM stocks WHERE date = ? AND symbol = ?";
-        ResultSet resultTotalVolume = null;
+        String sql = "SELECT MAX(price), MIN(price), SUM(volume) FROM stocks WHERE date = ? AND symbol = ?";
+        ResultSet rs = null;
 
         // Object representing summarized data
         StockSummary summary = new StockSummary();
@@ -68,43 +61,19 @@ public class StocksManager {
 
         try (
                 Connection conn = DBUtil.getConnection(DBType.MYSQL);
-
-                // statement for each sql query
-                PreparedStatement stmtHighestPrice = conn.prepareStatement(sqlHighestPrice);
-                PreparedStatement stmtLowestPrice = conn.prepareStatement(sqlLowestPrice);
-                PreparedStatement stmtTotalVolume = conn.prepareStatement(sqlTotalVolume);
+                PreparedStatement stmt = conn.prepareStatement(sql);
         ){
-            stmtHighestPrice.setDate(1, date);
-            stmtHighestPrice.setString(2, symbol);
-            resultHighestPrice = stmtHighestPrice.executeQuery();
+            stmt.setDate(1, date);
+            stmt.setString(2, symbol);
+            rs = stmt.executeQuery();
 
-            stmtLowestPrice.setDate(1, date);
-            stmtLowestPrice.setString(2, symbol);
-            resultLowestPrice = stmtLowestPrice.executeQuery();
+            if (rs.next()) {
 
-            stmtTotalVolume.setDate(1, date);
-            stmtTotalVolume.setString(2, symbol);
-            resultTotalVolume = stmtTotalVolume.executeQuery();
-
-            if (resultHighestPrice.next()) {
-
-                summary.setHighestPrice(resultHighestPrice.getDouble(1));
+                summary.setHighestPrice(rs.getDouble(1));
+                summary.setLowestPrice(rs.getDouble(2));
+                summary.setTotalVolume(rs.getInt(3));
             } else {
-                System.out.println("Error in retrieving highest price");
-            }
-
-            if (resultLowestPrice.next()) {
-
-                summary.setLowestPrice(resultLowestPrice.getDouble(1));
-            } else {
-                System.out.println("Error in retrieving lowest price");
-            }
-
-            if (resultTotalVolume.next()) {
-
-                summary.setTotalVolume(resultTotalVolume.getInt(1));
-            } else {
-                System.out.println("Error in retrieving total volume");
+                System.out.println("Error in retrieving query results");
             }
 
             return summary;
@@ -113,14 +82,8 @@ public class StocksManager {
             System.err.println(e);
             return null;
         } finally {
-            if (resultHighestPrice != null){
-                resultHighestPrice.close();
-            }
-            if (resultLowestPrice != null){
-                resultLowestPrice.close();
-            }
-            if (resultTotalVolume != null){
-                resultTotalVolume.close();
+            if (rs != null){
+                rs.close();
             }
         }
     }

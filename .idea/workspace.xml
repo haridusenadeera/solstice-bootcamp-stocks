@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1876ec85-e581-4923-a6f7-82681eb36be8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/haridu/solsticetraining/beans/StockSummary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/haridu/solsticetraining/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/haridu/solsticetraining/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/haridu/solsticetraining/tables/StocksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/haridu/solsticetraining/tables/StocksManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -17,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="45" column="76" lean-forward="true" selection-start-line="45" selection-start-column="76" selection-end-line="45" selection-end-column="76" />
+            <state relative-caret-position="-385">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -59,11 +56,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StocksManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Stock.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/beans/Stock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StocksManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/tables/StocksManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+            <state relative-caret-position="1275">
+              <caret line="85" column="27" lean-forward="true" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/DBUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -128,6 +146,12 @@
               <item name="CodingChallenge" type="616d4139:PackageViewModuleNode" />
               <item name="com.haridu.solsticetraining" type="1f31426a:PackageElementNode" />
               <item name="beans" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="CodingChallenge" type="58d84e3e:PackageViewProjectNode" />
+              <item name="CodingChallenge" type="616d4139:PackageViewModuleNode" />
+              <item name="com.haridu.solsticetraining" type="1f31426a:PackageElementNode" />
+              <item name="tables" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
@@ -233,7 +257,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="20" y="43" width="1400" height="763" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -243,13 +266,13 @@
       <window_info anchor="right" id="Capture Analysis" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32970452" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30637637" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992224" visible="true" weight="0.2496318" />
-      <window_info id="Structure" order="1" sideWeight="0.5007776" side_tool="true" visible="true" weight="0.2496318" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.73318386" visible="true" weight="0.2496318" />
+      <window_info id="Structure" order="1" sideWeight="0.26681614" side_tool="true" visible="true" weight="0.2496318" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" />
       <window_info anchor="right" id="Theme Preview" />
@@ -300,23 +323,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/DBUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="30" column="62" selection-start-line="30" selection-start-column="62" selection-end-line="30" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/week1-stocks.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/tables/StocksManager.java">
+    <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/DBUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+        <state relative-caret-position="390">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -325,25 +338,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/beans/Stock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
+        <state relative-caret-position="240">
           <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-385">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
-            <element signature="e#194#195#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#265#266#0" expanded="true" />
-            <element signature="e#301#302#0" expanded="true" />
-            <element signature="e#333#334#0" expanded="true" />
-            <element signature="e#361#362#0" expanded="true" />
-            <element signature="e#403#404#0" expanded="true" />
-            <element signature="e#437#438#0" expanded="true" />
-            <element signature="e#467#468#0" expanded="true" />
-            <element signature="e#496#497#0" expanded="true" />
-            <element signature="e#537#538#0" expanded="true" />
-            <element signature="e#573#574#0" expanded="true" />
-            <element signature="e#604#605#0" expanded="true" />
-            <element signature="e#631#632#0" expanded="true" />
-            <element signature="e#671#672#0" expanded="true" />
-            <element signature="e#703#704#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -376,10 +381,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/com/haridu/solsticetraining/tables/StocksManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="76" lean-forward="true" selection-start-line="45" selection-start-column="76" selection-end-line="45" selection-end-column="76" />
+        <state relative-caret-position="1275">
+          <caret line="85" column="27" lean-forward="true" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
