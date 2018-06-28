@@ -35,7 +35,90 @@ public class StocksManager {
         return true;
     }
 
-    public void insertJSONDate() {
+    public static double highestPrice(String symbol, Date date) throws SQLException {
 
+        String sql = "SELECT MAX(price) FROM stocks WHERE date = ? AND symbol = ?";
+        ResultSet rs = null;
+
+        try (
+                Connection conn = DBUtil.getConnection(DBType.MYSQL);
+                PreparedStatement stmt = conn.prepareStatement(sql);
+        ){
+            stmt.setDate(1, date);
+            stmt.setString(2, symbol);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getDouble(1);
+            } else {
+                return -1;
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return -1;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+        }
+    }
+
+    public static double lowestPrice(String symbol, Date date) throws SQLException {
+
+        String sql = "SELECT MIN(price) FROM stocks WHERE date = ? AND symbol = ?";
+        ResultSet rs = null;
+
+        try (
+                Connection conn = DBUtil.getConnection(DBType.MYSQL);
+                PreparedStatement stmt = conn.prepareStatement(sql);
+        ){
+            stmt.setDate(1, date);
+            stmt.setString(2, symbol);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getDouble(1);
+            } else {
+                return -1;
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return -1;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+        }
+    }
+
+    public static int totalVolume(String symbol, Date date) throws SQLException {
+
+        String sql = "SELECT SUM(volume) FROM stocks WHERE date = ? AND symbol = ?";
+        ResultSet rs = null;
+
+        try (
+                Connection conn = DBUtil.getConnection(DBType.MYSQL);
+                PreparedStatement stmt = conn.prepareStatement(sql);
+        ){
+            stmt.setDate(1, date);
+            stmt.setString(2, symbol);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                return -1;
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return -1;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+        }
     }
 }
